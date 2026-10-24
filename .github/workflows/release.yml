@@ -2,7 +2,7 @@ name: CI Build APKs
 
 on:
   push:
-分支:
+branches:
       - main
       - master
   pull_request:
