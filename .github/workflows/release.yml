@@ -2,7 +2,7 @@ name: CI Build APKs
 
 on:
   push:
-branches:
+    branches:
       - main
       - master
   pull_request:
@@ -31,7 +31,7 @@ jobs:
           ./gradlew --no-daemon :app:assembleScopedDebug :app:assembleGlobalDebug
 
       - name: Build release APKs only if signing secrets exist
-        if: ${{ secrets.KEYSTORE_BASE64 != '' }}
+        if: ${{ secrets.KEYSTORE_BASE64 != '' && secrets.KEYSTORE_PASSWORD != '' && secrets.KEY_ALIAS != '' && secrets.KEY_PASSWORD != '' }}
         env:
           KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
